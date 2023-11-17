@@ -1,7 +1,7 @@
-<button type="button" [disable]="!hasFinished" (click)="onSetStatus(false)">
+<button type="button" [disabled]="!hasFinished" (click)="onSetStatus(false)">
   未完成
 </button>
 <button type="button" [disabled]="hasFinished" (click)="onSetStatus(true)">
   已完成
 </button>
-{{ content }} - {{ hasFinished }}
+<span [class.completed]="hasFinished">{{ content }}</span>
