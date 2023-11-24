@@ -20,6 +20,9 @@ export class TodoComponent {
   @output()
   readonly hasFinishedChange = new EventEmitter();
 
+  @HostBinding("class")
+  class = "app-todo";
+
   onSetStatus(hasFinished: boolean): void {
     this.hasFinishedChange.emit(hasFinished);
   }
