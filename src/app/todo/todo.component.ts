@@ -17,8 +17,10 @@ export class TodoComponent {
 
   @Input({ transform: booleanAttribute })
   hasFinished!: boolean;
+  @output()
+  readonly hasFinishedChange = new EventEmitter();
 
   onSetStatus(hasFinished: boolean): void {
-    this.hasFinished = hasFinished;
+    this.hasFinishedChange.emit(hasFinished);
   }
 }
