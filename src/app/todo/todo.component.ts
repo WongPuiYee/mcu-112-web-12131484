@@ -1,17 +1,19 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
 @Component({
-  selector: 'app-todo',
+  selector: "app-todo",
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './todo.component.html',
-  styleUrl: './todo.component.css',
+  templateUrl: "./todo.component.html",
+  styleUrl: "./todo.component.css",
 })
 export class TodoComponent {
-  content = '待辦事項 A';
+  @Input()
+  content!: string;
 
-  hasFinished = false;
+  @Input()
+  hasFinished!: boolean;
 
   onSetStatus(hasFinished: boolean): void {
     this.hasFinished = hasFinished;
