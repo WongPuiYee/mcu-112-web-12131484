@@ -1,6 +1,5 @@
 import { Component } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { RouterOutlet } from "@angular/router";
+
 import { TodoComponent } from "./todo/todo.component";
 import { FooterComponent } from "./footer/footer.component";
 import { HeaderComponent } from "./header/header.component";
@@ -16,4 +15,6 @@ export class AppComponent {
   content = "待辦事項 A";
 
   hasFinished = false;
+
+  finishDate?: Date;
 }

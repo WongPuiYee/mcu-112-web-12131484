@@ -1,10 +1,10 @@
 import { Component } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { CommonModule, DatePipe } from "@angular/common";
 
 @Component({
   selector: "app-todo",
   standalone: true,
-  imports: [CommonModule],
+  imports: [DatePipe],
   templateUrl: "./todo.component.html",
   styleUrl: "./todo.component.css",
 })
@@ -18,12 +18,18 @@ export class TodoComponent {
   @Input({ transform: booleanAttribute })
   hasFinished!: boolean;
   @output()
-  readonly hasFinishedChange = new EventEmitter();
+  readonly hasFinishedChange = new EventEmitter<boolean>();
+
+  @Input()
+  finishDate?: Date;
+  @Output()
+  readonly finishDateChange = new EventEmitter<Date | undefined>();
 
   @HostBinding("class")
   class = "app-todo";
 
   onSetStatus(hasFinished: boolean): void {
     this.hasFinishedChange.emit(hasFinished);
+    this.finishDateChange.emit(hasFinished ? new Date() : undefined);
   }
 }
