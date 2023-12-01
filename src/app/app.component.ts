@@ -18,6 +18,10 @@ export class AppComponent {
 
   tasks = [new Todo(1, "待辦事項A"), new Todo(2, "待辦事項B")];
 
+  onAdd(): void {
+    this.taskService.add("待辦事項C");
+  }
+
   onStateChange(task: { index: number; state: boolean }): void {
     if ((task, state)) {
       this.task[task.index].setFinished(new Date());
@@ -25,12 +29,5 @@ export class AppComponent {
       this.task[task.index].finishDate = undefined;
       this.task[task.index].hasFinished = false;
     }
-  }
-  onSet(): void {
-    this.tasks = [new Todo(1, "待辦事項A"), new Todo(2, "待辦事項B")];
-  }
-
-  onClear(): void {
-    this.tasks = [];
   }
 }
