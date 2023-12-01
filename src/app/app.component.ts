@@ -22,6 +22,10 @@ export class AppComponent {
     this.taskService.add("待辦事項C");
   }
 
+  onRemove(id: number): void {
+    this.taskService.remove(id);
+  }
+
   onStateChange({ id, state }: { id: number; state: boolean }): void {
     this.taskService.updateState(id, state);
   }

@@ -12,6 +12,8 @@ export class TodoComponent {
   @Input({ required: true })
   task!: Todo;
 
+  @output() remove = new EventEmitter<void>();
+
   @output()
   readonly stateChange = new EventEmitter<boolean>();
 
