@@ -4,6 +4,7 @@ import { TodoComponent } from "./todo/todo.component";
 import { FooterComponent } from "./footer/footer.component";
 import { HeaderComponent } from "./header/header.component";
 import { JsonPipe } from "@angular/common";
+import { TaskService } from "./service/task.service";
 
 @Component({
   selector: "app-root",
@@ -13,6 +14,8 @@ import { JsonPipe } from "@angular/common";
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
+  taskService = inject(TaskService);
+
   tasks = [new Todo(1, "待辦事項A"), new Todo(2, "待辦事項B")];
 
   onStateChange(task: { index: number; state: boolean }): void {
