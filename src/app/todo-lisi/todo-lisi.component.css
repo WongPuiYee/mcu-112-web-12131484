@@ -1,0 +1,17 @@
+:host {
+  display: block;
+}
+
+.app-todo {
+  border-bottom: solid 1px #ededed;
+}
+
+.empty {
+  display: block;
+  padding: 10px 15px 10px 5px;
+  border-bottom: solid 1px #ededed;
+  color: #777;
+  font-size: 28px;
+  font-weight: 200;
+  text-align: center;
+}
