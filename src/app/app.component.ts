@@ -22,12 +22,7 @@ export class AppComponent {
     this.taskService.add("待辦事項C");
   }
 
-  onStateChange(task: { index: number; state: boolean }): void {
-    if ((task, state)) {
-      this.task[task.index].setFinished(new Date());
-    } else {
-      this.task[task.index].finishDate = undefined;
-      this.task[task.index].hasFinished = false;
-    }
+  onStateChange({ id, state }: { id: number; state: boolean }): void {
+    this.taskService.updateState(id, state);
   }
 }
