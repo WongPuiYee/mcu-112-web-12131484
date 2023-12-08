@@ -5,11 +5,12 @@ import { FooterComponent } from "./footer/footer.component";
 import { HeaderComponent } from "./header/header.component";
 import { JsonPipe } from "@angular/common";
 import { TaskService } from "./service/task.service";
+import { TodoDetailComponent } from "./todo-detail/todo-detail.component";
 
 @Component({
   selector: "app-root",
   standalone: true,
-  imports: [HeaderComponent, TodoListComponent, FooterComponent, JsonPipe],
+  imports: [NgIf, HeaderComponent, TodoListComponent,TodoDetailComponent, FooterComponent, JsonPipe],
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
 })
@@ -17,6 +18,8 @@ export class AppComponent implements OnInit {
   taskService = inject(TaskService);
 
   tasks: Todo[] = [];
+  
+  selectedId?: number;
 
   ngOnInit(): void {
     this.tasks = this.taskService.getAll();
