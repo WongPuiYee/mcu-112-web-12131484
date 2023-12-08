@@ -1,4 +1,12 @@
-import { Component, HostBinding, OnChanges, OnInit, SimpleChanges, inject, numberAttribute } from "@angular/core";
+import {
+  Component,
+  HostBinding,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  inject,
+  numberAttribute,
+} from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { TaskService } from "../service/task.service";
 
@@ -14,16 +22,11 @@ export class TodoDetailComponent implements OnInit, OnChanges {
 
   task?: TodoDetailComponent;
 
-  private readonly taskService = inject(TaskService);
-  @HostBinding(' class')
-  class = 'todo-detail';
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
-  }
+  private readonly taskService = inject(TaskRemoteService);
+  @HostBinding(" class")
+  class = "todo-detail";
 
   ngOnChanges(): void {
-console.log('ng on init');    
-  }
+    this.taskService.getById(this.id).subscribe((task) => (this.task = task));
   }
 }
