@@ -15,14 +15,14 @@ import { TodoDetailComponent } from "./todo-detail/todo-detail.component";
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent implements OnInit {
-  taskService = inject(TaskService);
+  taskService = inject(TaskRemoteService);
 
   tasks: Todo[] = [];
   
   selectedId?: number;
 
   ngOnInit(): void {
-    this.tasks = this.taskService.getAll();
+    this.taskService.getAll().subscribe(tasks => this.tasks);
   }
 
   onAdd(): void {
