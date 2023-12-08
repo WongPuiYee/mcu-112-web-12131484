@@ -10,19 +10,19 @@ import { TodoDetailComponent } from "./todo-detail/todo-detail.component";
 @Component({
   selector: "app-root",
   standalone: true,
-  imports: [NgIf, HeaderComponent, TodoListComponent,TodoDetailComponent, FooterComponent, JsonPipe],
+  imports: [NgIf, AsyncPipe, HeaderComponent, TodoListComponent,TodoDetailComponent, FooterComponent, JsonPipe],
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent implements OnInit {
   taskService = inject(TaskRemoteService);
 
-  tasks: Todo[] = [];
+  tasks$!: Observable<Todo[]>;
   
   selectedId?: number;
 
   ngOnInit(): void {
-    this.taskService.getAll().subscribe(tasks => this.tasks);
+    this.tasks$ = this.taskService.getAll();
   }
 
   onAdd(): void {
