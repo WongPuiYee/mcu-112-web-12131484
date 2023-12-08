@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 
 import { TodoComponent } from "./todo/todo.component";
 import { FooterComponent } from "./footer/footer.component";
@@ -13,10 +13,14 @@ import { TaskService } from "./service/task.service";
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   taskService = inject(TaskService);
 
-  tasks = [new Todo(1, "待辦事項A"), new Todo(2, "待辦事項B")];
+  tasks: Todo[] = [];
+
+  ngOnInit(): void {
+    this.tasks = this.taskService.getAll();
+  }
 
   onAdd(): void {
     this.taskService.add("待辦事項C");
@@ -26,7 +30,11 @@ export class AppComponent {
     this.taskService.remove(id);
   }
 
-  onStateChange({ id, state }: { id: number; state: boolean }): void {
+  //onStateChange(task: { id: number; state: boolean }): void {
+    this.taskService.updateState(task.id, task.state);
+
+  //}
+    onStateChange({ id, state }: { id: number; state: boolean }): void {
     this.taskService.updateState(id, state);
   }
 }
