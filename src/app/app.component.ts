@@ -16,7 +16,7 @@ import { startWith } from "rxjs";
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent implements OnInit {
-  taskService = inject(TaskRemoteService);
+  taskService = inject(TaskService);
 
   tasks$!: Observable<Todo[]>;
 
