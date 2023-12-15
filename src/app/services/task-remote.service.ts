@@ -29,6 +29,6 @@ new Todo({ content, hasFinished });
 return this.httpClient.put<Todo>(`${this.url}/${id}`, task);
   }
   remove(id: number): void {
-    throw new Error("Method not implemented.");
+return this.httpClient.delete<Todo>(`${this.url}/${id}`);
   }
 }

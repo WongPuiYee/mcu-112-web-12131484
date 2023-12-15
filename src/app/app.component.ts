@@ -37,7 +37,7 @@ switchMap(() => this.taskService.getAll())
   }
 
   onRemove(id: number): void {
-    this.taskService.remove(id);
+    this.taskService.remove(id).subscribe (() => this.refresh$.next());;
   }
 
   //onStateChange(task: { id: number; state: boolean }): void {
