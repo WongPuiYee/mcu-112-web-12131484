@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -18,8 +19,9 @@ return this.httpClient.get<Todo | undefined>(`${this.url}/${id}`)
     }
  
 
-  add(content: string): void {
-    throw new Error("Method not implemented.");
+  add(content: string): Observable <todo>{
+const task = new Todo({ content });
+return this.httpClient.post<Todo>(this.url, task);
   }
 
   updateState(id: number, hasFinished: boolean): void {

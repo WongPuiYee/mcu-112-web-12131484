@@ -6,6 +6,7 @@ import { HeaderComponent } from "./header/header.component";
 import { JsonPipe } from "@angular/common";
 import { TaskService } from "./service/task.service";
 import { TodoDetailComponent } from "./todo-detail/todo-detail.component";
+import { startWith } from "rxjs";
 
 @Component({
   selector: "app-root",
@@ -18,15 +19,21 @@ export class AppComponent implements OnInit {
   taskService = inject(TaskRemoteService);
 
   tasks$!: Observable<Todo[]>;
+
+  readonly refresh$ = new Subject<void>();
   
   selectedId?: number;
 
   ngOnInit(): void {
-    this.tasks$ = this.taskService.getAll();
+    //run when refresh
+    this.tasks$ = this.refresh$.pipe(
+      startWith(undefined),
+switchMap(() => this.taskService.getAll())
+);
   }
 
   onAdd(): void {
-    this.taskService.add("待辦事項C");
+    this.taskService.add("待辦事項C").subscribe (() => this.refresh$.next());
   }
 
   onRemove(id: number): void {
@@ -40,4 +47,5 @@ export class AppComponent implements OnInit {
     onStateChange({ id, state }: { id: number; state: boolean }): void {
     this.taskService.updateState(id, state);
   }
+  
 }
