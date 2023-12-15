@@ -24,8 +24,9 @@ const task = new Todo({ content });
 return this.httpClient.post<Todo>(this.url, task);
   }
 
-  updateState(id: number, hasFinished: boolean): void {
-    throw new Error("Method not implemented.");
+  updateState(task: Todo, hasFinished: boolean): Observable<Todo> {
+new Todo({ content, hasFinished });
+return this.httpClient.put<Todo>(`${this.url}/${id}`, task);
   }
   remove(id: number): void {
     throw new Error("Method not implemented.");

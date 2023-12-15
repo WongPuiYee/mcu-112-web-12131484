@@ -17,5 +17,5 @@ export class TodoListComponent {
 
   @output() view = new EventEmitter<number>();
 
-  @output() stateChange = new EventEmitter<{ id: number; state: boolean }>();
+  @output() stateChange = new EventEmitter<{ task: Todo; state: boolean }>();
 }

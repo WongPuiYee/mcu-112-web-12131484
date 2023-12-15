@@ -1,1 +1,16 @@
-<p>todo-list works!</p>
+<ng-container
+  *ngIg="tasks && tasks.length > 0; then dataList; else dataEmpty"
+></ng-container>
+
+<ng-template #dataList>
+  <app-todo
+    *ngFor="let task of tasks; let index = index"
+    [task]="task"
+    (remove)="remove.emit(task.id)"
+    (stateChange)="stateChange.emit({ task: task, state: $event })"
+  ></app-todo>
+</ng-template>
+
+<ng-template #dataEmpty>
+  <div class="empty">沒有待辦事項</div>
+</ng-template>

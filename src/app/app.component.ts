@@ -44,8 +44,8 @@ switchMap(() => this.taskService.getAll())
     this.taskService.updateState(task.id, task.state);
 
   //}
-    onStateChange({ id, state }: { id: number; state: boolean }): void {
-    this.taskService.updateState(id, state);
+    onStateChange({ id, state }: { task: Todo; state: boolean }): void {
+    this.taskService.updateState(id, state).subscribe(() => this.refresh$.next());
   }
   
 }
