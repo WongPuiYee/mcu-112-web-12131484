@@ -11,7 +11,7 @@ import { BehaviorSubject, startWith } from "rxjs";
 @Component({
   selector: "app-root",
   standalone: true,
-  imports: [NgIf, AsyncPipe, HeaderComponent, TodoListComponent,TodoDetailComponent, TodoSearchComponent, FooterComponent],
+  imports: [NgIf, AsyncPipe, HeaderComponent, TodoListComponent,TodoDetailComponent, TodoSearchComponent, TodoFormComponent, FooterComponent],
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
 })
