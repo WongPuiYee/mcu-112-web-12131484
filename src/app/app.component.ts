@@ -11,7 +11,7 @@ import { startWith } from "rxjs";
 @Component({
   selector: "app-root",
   standalone: true,
-  imports: [NgIf, AsyncPipe, HeaderComponent, TodoListComponent,TodoDetailComponent, FooterComponent, JsonPipe],
+  imports: [NgIf, AsyncPipe, HeaderComponent, TodoListComponent,TodoDetailComponent, TodoSearchComponent, FooterComponent],
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
 })
