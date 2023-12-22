@@ -1,12 +1,12 @@
 import { Component, HostBinding } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { CommonModule, JsonPipe } from "@angular/common";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { ITodoForm } from "../interface/todo-form .interface";
 
 @Component({
   selector: "app-todo-form",
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [NgIf, ReactiveFormsModule, JsonPipe],
   templateUrl: "./todo-form.component.html",
   styleUrl: "./todo-form.component.css",
 })
@@ -18,7 +18,9 @@ export class TodoFormComponent {
   readonly save = new EventEmitter<Todo>();
 
   readonly form = new FormGroup<ITodoForm>({
-    content: new FormControl<string | null>(null),
+    content: new FormControl<string | null>(null, {
+      validators: [Validators.required],
+    }),
   });
 
   get formData(): Todo {
