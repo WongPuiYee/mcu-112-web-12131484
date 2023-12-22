@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { Todo } from "../model/todo";
 
 @Injectable({
   providedIn: "root",
@@ -22,10 +23,8 @@ return this.httpClient.get<Todo | undefined>(`${this.url}/${id}`)
     }
  
 
-  add(content: string): Observable <todo>{
-    console.log(`Task Remote Service - add`);
-
-const task = new Todo({ content });
+  add(task:Todo ): Observable <todo>{
+    console.log(`Task Remote Service - add`,task);
 return this.httpClient.post<Todo>(this.url, task);
   }
 

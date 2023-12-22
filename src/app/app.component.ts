@@ -7,6 +7,7 @@ import { JsonPipe } from "@angular/common";
 import { TaskService } from "./service/task.service";
 import { TodoDetailComponent } from "./todo-detail/todo-detail.component";
 import { BehaviorSubject, startWith } from "rxjs";
+import { Todo } from "./model/todo";
 
 @Component({
   selector: "app-root",
@@ -32,8 +33,9 @@ this.tasks$ = merge(this.tasks$ = this.refresh$.pipe(startWith(undefined)) ,
 ).pipe(switchMap(() => this.taskService.getAll(this.search$.value)));
   }
 
-  onAdd(): void {
-    this.taskService.add("待辦事項C").subscribe (() => this.refresh$.next());
+  onSave(task: Todo): void {
+    console.log(task);
+    this.taskService.add("task").subscribe (() => this.refresh$.next());
   }
 
   onRemove(id: number): void {

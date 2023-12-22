@@ -19,7 +19,7 @@ export class TaskService {
     return of(this.tasks);
   }
 
-  add(content: string): Observable<Todo> {
+  add({ content }: string): Observable<Todo> {
     console.log(`Task Service - add`);
     const id =
       this.tasks.length === 0
