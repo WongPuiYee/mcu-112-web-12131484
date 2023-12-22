@@ -6,7 +6,7 @@ import { HeaderComponent } from "./header/header.component";
 import { JsonPipe } from "@angular/common";
 import { TaskService } from "./service/task.service";
 import { TodoDetailComponent } from "./todo-detail/todo-detail.component";
-import { startWith } from "rxjs";
+import { BehaviorSubject, startWith } from "rxjs";
 
 @Component({
   selector: "app-root",
@@ -20,16 +20,16 @@ export class AppComponent implements OnInit {
 
   tasks$!: Observable<Todo[]>;
 
+  readonly search$ = new BehaviorSubject<string | null>(null);
+
   readonly refresh$ = new Subject<void>();
   
   selectedId?: number;
 
   ngOnInit(): void {
-    //run when refresh
-    this.tasks$ = this.refresh$.pipe(
-      startWith(undefined),
-switchMap(() => this.taskService.getAll())
-);
+this.tasks$ = merge(this.tasks$ = this.refresh$.pipe(startWith(undefined)) ,
+ this.search$
+).pipe(switchMap(() => this.taskService.getAll(this.search$.value)));
   }
 
   onAdd(): void {
@@ -48,4 +48,7 @@ switchMap(() => this.taskService.getAll())
     this.taskService.updateState(id, state).subscribe(() => this.refresh$.next());
   }
   
+  onSearch(content: string | null) : void {
+this.search$next(content);
+  }
 }

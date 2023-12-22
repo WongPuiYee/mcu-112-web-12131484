@@ -15,9 +15,10 @@ private readonly url = 'http://localhost:3000/tasks';
 return this.httpClient.get<Todo | undefined>(`${this.url}/${id}`)
   }
 
-  getAll(): Observabble Todo[] {
+  getAll(content: string | null): Observabble Todo[] {
     console.log(`Task Remote Service - getAll`);
-      return this.httpClient.get<Todo[]>(this.url);
+    const url = content ?`${this.url}?content_like=${content} ` : this.url;
+      return this.httpClient.get<Todo[]>(url);
     }
  
 
