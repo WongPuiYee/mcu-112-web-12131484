@@ -28,9 +28,14 @@ return this.httpClient.get<Todo | undefined>(`${this.url}/${id}`)
 return this.httpClient.post<Todo>(this.url, task);
   }
 
+  update(id: number, {content}:Todo): Observable<Todo>{
+    const task = new Todo({ content  });
+    return this.httpClient.put<Todo>(`${this.url}/${id}`, task);
+      }
+
   updateState(task: Todo, hasFinished: boolean): Observable<Todo> {
     console.log(`Task Remote Service - updateState`);
-new Todo({ content, hasFinished });
+const task = new Todo({ content, hasFinished });
 return this.httpClient.put<Todo>(`${this.url}/${id}`, task);
   }
   remove(id: number): void {
