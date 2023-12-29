@@ -8,11 +8,12 @@ import { TaskService } from "./service/task.service";
 import { TodoDetailComponent } from "./todo-detail/todo-detail.component";
 import { BehaviorSubject, startWith } from "rxjs";
 import { Todo } from "./model/todo";
+import { NavBarComponent } from "./nav-bar/nav-bar.component";
 
 @Component({
   selector: "app-root",
   standalone: true,
-  imports: [NgIf, AsyncPipe, HeaderComponent, TodoListComponent,TodoDetailComponent, TodoSearchComponent, TodoFormComponent, FooterComponent],
+  imports: [NgIf, AsyncPipe, NavBarComponent, HeaderComponent, TodoListComponent,TodoDetailComponent, TodoSearchComponent, TodoFormComponent, FooterComponent],
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
 })
