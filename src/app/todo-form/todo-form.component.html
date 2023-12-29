@@ -32,5 +32,6 @@
   <button type="button" [disabled]="form.invalid">
     (click)="onSave()"儲存
   </button>
+  <button type="button" (click)="cancel.emit()">取消</button>
 </div>
 <pre>{{ form.value | json }}</pre>
