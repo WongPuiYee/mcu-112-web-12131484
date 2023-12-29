@@ -12,6 +12,8 @@ export class TodoComponent {
   @Input({ required: true })
   task!: Todo;
 
+  @Output() edit = new EventEmitter<void>();
+
   @output() remove = new EventEmitter<void>();
 
   @output()

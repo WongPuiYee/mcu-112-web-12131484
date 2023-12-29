@@ -11,6 +11,7 @@ export const routes: Routes = [
     { path: "home", component: TodoPageComponent },
     {path:'todo/:id', component:TodoDetailPageComponent  },
     {path:`todo-form`, component:TodoFormComponent},
+    {path:`todo-form/:id`, component:TodoFormComponent},
     {path:'login', component: LoginPageComponent},
 {path:'register', component: RegisterPageComponent},
 {path:'**', component: NotFoundPageComponent},

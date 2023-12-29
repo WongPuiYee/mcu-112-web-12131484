@@ -13,6 +13,8 @@ export class TodoListComponent {
   @Input() tasks?: Todo[];
   tasks?: Todo[] | null;
 
+  @Output() edit = new EventEmitter<number>();
+
   @output() remove = new EventEmitter<number>();
 
   @output() view = new EventEmitter<number>();
