@@ -1,7 +1,14 @@
-import { Component, OnInit, inject } from "@angular/core";
+import {
+  Component,
+  Input,
+  OnInit,
+  inject,
+  numberAttribute,
+} from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ActivatedRoute } from "@angular/router";
 import { Observable } from "rxjs";
+import { NumberValueAccessor } from "@angular/forms";
 
 @Component({
   selector: "app-todo-form-page",
@@ -12,35 +19,16 @@ import { Observable } from "rxjs";
 })
 export class TodoFormPageComponent implements OnInit {
   taskService = inject(TaskService);
-
+  @Input()
   title!: string;
 
+  @Input({ Transform: numberAttribute })
   id?: number;
 
+  @Input()
   formData?: Todo;
 
   readonly router = inject(Router);
-
-  readonly route = inject(ActivatedRoute);
-
-  ngOnInit(): void {
-    this.route.paramMap
-      .pipe(
-        filter((paramMap) => paramMap.has(`id`)),
-        tap((id) => (this.id = id)),
-        map((paramMap) => paramMap.get(`id`)!),
-        switchMap((id) => this.taskService.getById(id))
-      )
-      .subscribe((id) => (this.id = id));
-
-    this.route.data
-      .pipe(
-      tap(({this.title})=>this.title = title;)
-      map(({  formData }) => formData))
-      .subscribe((title) =>
-      this.formData = formData
-    );
-  }
 
   onSave(task: Todo): void {
     let action$: Observable<Todo>;
