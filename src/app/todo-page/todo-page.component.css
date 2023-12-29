@@ -1,0 +1,8 @@
+.main {
+  border: solid 1px #ddd;
+  border-bottom: none;
+}
+
+.todo-form {
+  margin-top: 50px;
+}
