@@ -10,8 +10,12 @@ export const routes: Routes = [
     {path:'',pathMatch:'full'redirectTo:'home'},
     { path: "home", component: TodoPageComponent },
     {path:'todo/:id', component:TodoDetailPageComponent  },
-    {path:`todo-form`, component:TodoFormComponent},
-    {path:`todo-form/:id`, component:TodoFormComponent},
+    {path:`todo-form`, component:TodoFormComponent,
+data:{ title `待辦事項新增` }
+},
+    {path:`todo-form/:id`, component:TodoFormComponent,
+    data:{ title `待辦事項編輯` }
+},
     {path:'login', component: LoginPageComponent},
 {path:'register', component: RegisterPageComponent},
 {path:'**', component: NotFoundPageComponent},
